@@ -43,7 +43,7 @@ export async function getSubscriptionData() {
       throw dbError;
     }
   }
-
+					
   const planCode = "PLN_vvsfbkuq1ivo8cl";
   console.log("Initializing Paystack transaction with plan:", planCode);
   try {
