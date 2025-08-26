@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import { FileSpreadsheet, Code, BarChart } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 
 import TryNowButton from "@/components/try-button";
@@ -11,7 +10,7 @@ import { initialProfile } from "@/lib/initial-profile";
 
 export default async function LandingPage() {
   const profile = await initialProfile();
-  
+
   if (!profile) {
     return redirect("/sign-in");
   }
