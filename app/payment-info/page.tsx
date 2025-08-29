@@ -53,14 +53,11 @@ export default function PaymentInfoPage() {
 
     async function fetchCheckoutUrl() {
       try {
-        console.log("Fetching checkout URL...");
+		// console.log("Fetching checkout URL...");
         const url = await initiatePayment();
-        console.log("Checkout URL fetched:", url);
-        if (!url) throw new Error("No checkout URL received");
         setCheckoutUrl(url);
       } catch (error) {
         console.error("Failed to fetch checkout URL:", error);
-        toast.error(`Payment initiation failed: ${error.message}`);
         router.push("/dashboard");
       }
     }
@@ -75,7 +72,7 @@ export default function PaymentInfoPage() {
 
   if (!isMounted) {
     return (
-      <div className="container mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+      <div className="\ mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           Payment Information
         </h1>
@@ -92,14 +89,14 @@ export default function PaymentInfoPage() {
 
   if (!checkoutUrl) {
     return (
-      <div className="container mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen bg-white dark:bg-gray-900">
-        <p className="text-red-500">Failed to load payment options. Redirecting...</p>
+      <div className=" mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen">
+        Loading payment information...
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen bg-white dark:bg-gray-900">
+    <div className="mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen">
       <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
         Payment Information
       </h1>

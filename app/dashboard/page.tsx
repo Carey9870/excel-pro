@@ -6,8 +6,9 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { LoaderCircle } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import { SignedIn, useUser } from "@clerk/nextjs";
 import {
+  SignedIn,
+  useUser,
   UserButton,
   SignUpButton,
   SignInButton,
