@@ -53,7 +53,7 @@ export default function PaymentInfoPage() {
 
     async function fetchCheckoutUrl() {
       try {
-		// console.log("Fetching checkout URL...");
+		console.log("Fetching checkout URL...");
         const url = await initiatePayment();
         setCheckoutUrl(url);
       } catch (error) {
@@ -72,7 +72,7 @@ export default function PaymentInfoPage() {
 
   if (!isMounted) {
     return (
-      <div className="\ mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen">
+      <div className="mx-auto p-4 max-w-4xl flex flex-col items-center justify-center min-h-screen">
         <h1 className="text-3xl font-bold mb-4 text-gray-900 dark:text-white">
           Payment Information
         </h1>
