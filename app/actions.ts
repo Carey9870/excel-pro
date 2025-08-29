@@ -1,3 +1,5 @@
+"use server"
+
 import { initialProfile } from "@/lib/initial-profile";
 import { getSubscriptionData } from "@/lib/subscribe";
 
