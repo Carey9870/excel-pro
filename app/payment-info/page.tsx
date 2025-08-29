@@ -48,19 +48,54 @@ export default function PaymentInfoPage() {
 
   const countdown = useCountdown(checkoutUrl, isMounted);
 
+  // useEffect(() => {
+  //   if (!isMounted) return;
+
+  //   async function fetchCheckoutUrl() {
+  //     try {
+  //       console.log("Fetching checkout URL...");
+  //       const url = await initiatePayment();
+  //       setCheckoutUrl(url);
+  //     } catch (error) {
+  //       console.error("Failed to fetch checkout URL:", error);
+  //       router.push("/dashboard");
+  //     }
+  //   }
+  //   fetchCheckoutUrl();
+  // }, [isMounted, router]);
+
   useEffect(() => {
     if (!isMounted) return;
 
     async function fetchCheckoutUrl() {
-      try {
-		console.log("Fetching checkout URL...");
-        const url = await initiatePayment();
-        setCheckoutUrl(url);
-      } catch (error) {
-        console.error("Failed to fetch checkout URL:", error);
-        router.push("/dashboard");
+      const maxRetries = 5;
+      let attempt = 1;
+
+      while (attempt <= maxRetries) {
+        try {
+          console.log(
+            `Fetching checkout URL (Attempt ${attempt}/${maxRetries})...`
+          );
+          const url = await initiatePayment();
+          setCheckoutUrl(url);
+          return; // Success, exit the retry loop
+        } catch (error) {
+          console.error(
+            `Failed to fetch checkout URL (Attempt ${attempt}/${maxRetries}):`,
+            error
+          );
+          if (attempt === maxRetries) {
+            // Last attempt failed, redirect to dashboard
+            router.push("/dashboard");
+            return;
+          }
+          // Optional: Add delay between retries (e.g., 1 second)
+          await new Promise((resolve) => setTimeout(resolve, 1000));
+          attempt++;
+        }
       }
     }
+
     fetchCheckoutUrl();
   }, [isMounted, router]);
 

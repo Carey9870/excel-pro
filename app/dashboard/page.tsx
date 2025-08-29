@@ -140,7 +140,7 @@ export default function Home({ initialProfile }: HomeClientProps) {
                 {profile && profile.subscription !== "active" && (
                   <Button
                     onClick={() => paymentMutation.mutate()}
-                    className="border-white bg-teal-700 text-white hover:bg-teal-500 hover:text-white rounded-lg"
+                    className="border-white bg-teal-700 text-white hover:bg-teal-500 hover:cursor-pointer hover:text-white rounded-lg"
                   >
                     Subscribe
                   </Button>
